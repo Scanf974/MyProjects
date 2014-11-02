@@ -30,3 +30,13 @@ void	ft_list_push_back(t_list **begin_list, char token)
 		curent_list = curent_list->next;
 	curent_list->next = new_element;
 }
+
+void	ft_remove_top(t_list **begin_list)
+{
+	t_list	*temp;
+	
+	// Ca ne sert pas encore a grand chose, psk ya pas de free
+	temp = *begin_list;
+	temp = temp->next;
+	*begin_list = temp;
+}
