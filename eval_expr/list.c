@@ -58,10 +58,13 @@ void	ft_print_list(t_list **begin_list)
 	t_list	*temp;
 
 	temp = *begin_list;
-	while(temp->next)
+	if (temp)
 	{
+		while(temp->next)
+		{
+			ft_putchar(temp->token);
+			temp = temp->next;
+		}
 		ft_putchar(temp->token);
-		temp = temp->next;
 	}
-	ft_putchar(temp->token);
 }
