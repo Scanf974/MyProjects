@@ -16,6 +16,21 @@ int		is_ope(char token)
 	return (0);
 }
 
+t_list	*ft_list_reverse(t_list **begin_list)
+{
+	t_list	*temp;
+	t_list	*rev;
+
+	temp = *begin_list;
+	rev = init_list(rev);
+	while (temp)
+	{
+		ft_list_push_front(&rev, temp->token);
+		temp = temp->next;
+	}
+	return (rev);
+}
+
 void	shunting_yard(t_list **line)
 {
 	t_list	*temp_line;
@@ -23,11 +38,6 @@ void	shunting_yard(t_list **line)
 	t_list	*output_queue;
 
 	temp_line = *line;
-
-	ft_putstr("LIN ");
-	ft_print_list(line);
-	ft_putchar('\n');
-
 	output_queue = init_list(output_queue);
 	stack = init_list(stack);
 	while (temp_line)
@@ -57,12 +67,6 @@ void	shunting_yard(t_list **line)
 			}
 			ft_remove_top(&stack);
 		}
-
-		ft_putstr("\nSTA ");
-		ft_print_list(&stack);
-		ft_putstr("\nOUT ");
-		ft_print_list(&output_queue);
-		ft_putchar('\n');
 		temp_line = temp_line->next;
 	}
 	while (stack)
@@ -70,6 +74,6 @@ void	shunting_yard(t_list **line)
 		ft_list_push_front(&output_queue, stack->token);
 		ft_remove_top(&stack);
 	}
-	ft_putstr("et mtn the end is OUT: ");
+	output_queue = ft_list_reverse(&output_queue);
 	ft_print_list(&output_queue);
 }
