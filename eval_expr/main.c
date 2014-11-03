@@ -14,7 +14,7 @@ int		main(int argc, char *argv[])
 				ft_list_push_back(&line, argv[1][i]);
 			i++;
 		}
-		ft_print_list(&line);
+		shunting_yard(&line);
 	}
 	return (0);
 }

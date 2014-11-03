@@ -4,6 +4,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "ft_list.h"
+# include "shunting.h"
 
 # define UPCASE(x) (x >= 'A' && x <= 'Z')
 # define LOWCASE(x) (x >= 'a' && x <= 'z')

@@ -14,9 +14,14 @@ void	ft_list_push_front(t_list **begin_list, char token)
 {
 	t_list	*new_element;
 
-	new_element = ft_create_elem(token);
-	new_element->next = *begin_list;
-	*begin_list = new_element;
+	if (*begin_list == NULL)
+		*begin_list = ft_create_elem(token);
+	else
+	{
+		new_element = ft_create_elem(token);
+		new_element->next = *begin_list;
+		*begin_list = new_element;
+	}
 }
 
 void	ft_list_push_back(t_list **begin_list, char token)
