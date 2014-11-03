@@ -1,14 +1,20 @@
 #include "includes/ft.h"
 
-int		main(void)
+int		main(int argc, char *argv[])
 {
-	t_list		*tool;
+	int		i;
+	t_list	*line;
 
-	tool = ft_create_elem('d');
-	ft_list_push_front(&tool, 'e');
-	ft_list_push_back(&tool, 'f');
-	ft_remove_top(&tool);
-	ft_putchar(tool->token);
-	ft_putchar((tool->next)->token);
+	i = 0;
+	if (argc >= 2)
+	{
+		while (argv[1][i])
+		{
+			if(argv[1][i] != ' ')
+				ft_list_push_back(&line, argv[1][i]);
+			i++;
+		}
+		ft_print_list(&line);
+	}
 	return (0);
 }
