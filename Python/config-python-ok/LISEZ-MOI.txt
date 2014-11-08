@@ -1,0 +1,30 @@
+Programmes principaux à installer :
+
+python-2.6   (Attention à installer dans le dossier "mes documents")
+
+puis les librairies (laisser les options par défaut)
+
+wxPython      
+scipy
+numpy
+
+Pour l'éditeur :
+geany
+
+Copier le dossier "exemple" dans votre dossier python pour avoir les exemples des programmes du cours
+Vous pourrez ensuite ouvrir vos programmes python (extension ".py") en cliquant bouton droit de la souris dessus et sélectionner "OPEN with GEANY" du menu contextuel
+
+
+Il faut ensuite configurer le "path" (chemin d'accès à python) dans la variable d'environnement de windows
+pour que l'éditeur puisse trouver python pour compiler qui est du type :
+
+C:\Users\User\Documents\python\
+
+(sous win7)
+Attention à ne pas modifier les autres chemins d'accès de la variable "path" ! 
+
+Se référer aux copies écran pour modifier le "path" (win7.jpg)
+
+Il est nécessaire de relancer ensuite geany pour la prise en compte du path
+
+ 
