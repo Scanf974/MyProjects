@@ -31,6 +31,16 @@ t_list	*ft_list_reverse(t_list **begin_list)
 	return (rev);
 }
 
+t_list	*calcul_polish(t_list **begin_list)
+{
+	t_list	*temp;
+
+	if (!is_ope(temp->token) && !is_ope((temp->next)->token))
+	{
+		if (is_ope((temp->next->next)->token))
+			
+	}
+
 void	shunting_yard(t_list **line)
 {
 	t_list	*temp_line;

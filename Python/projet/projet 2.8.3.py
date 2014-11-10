@@ -6,7 +6,7 @@ from scipy import *
 from Tkinter import *
 from math import *
 import time
-import winsound
+#import winsound
 import threading
 import ImageTk
 import os
