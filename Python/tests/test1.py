@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from Tkinter import *
 from math import *
 from scipy import *
+import ImageTk
 
 class   First_cls(object):
     """Me premier class"""
@@ -22,30 +24,39 @@ class   Objet_de_la_vie:
         self.poids = poids
         self.py = py
         self.px = px
-        t[self.py, self.px] = 1
 
 class   Gland(Objet_de_la_vie):
     """LE gland"""
 
     def __init__(self, poids, py, px):
         Objet_de_la_vie.__init__(self, poids, py, px)
+        self.image = can.create_image(self.px, self.py, image = gland_image, anchor = NW)
 
-    def ligne(self, direction):
-        if (direction == 6):
-            t[self.py, self.px + 1] = 1
+class   Squirrel(Objet_de_la_vie):
+    """LE squirrel"""
+
+    def __init__(self, poids, py, px):
+        Objet_de_la_vie.__init__(self, poids, py, px)
+        self.image = can.create_image(self.px, self.py, image = squirrel_image, anchor = NW)
 
 
-def     tab(y0, x0):
-    for y in range (y0):
-        for x in range (x0):
-            print t[y, x],
-        print
+fen = Tk()
+fen.title("BallSquirrel")
+frame = Frame(fen)
+frame.pack()
 
-t = zeros([200, 40], int)
-tab(10, 20)
-print
+can = Canvas(fen, width = 1200, height = 500, bg = 'white')
+can.pack(side = TOP, padx = 0, pady = 0)
 
-g1 = Gland(1, 5, 1)
-tab(10, 20)
-g1.ligne(6)
-tab(10, 20)
+gland_image = ImageTk.PhotoImage(file = 'images/gland.png')
+squirrel_image = ImageTk.PhotoImage(file = 'images/ab.png')
+fond_image = ImageTk.PhotoImage(file = 'images/decors.png')
+sol_image = ImageTk.PhotoImage(file = 'images/bg2.png')
+
+fond = can.create_image(0, 0, image = fond_image, anchor = NW)
+sol = can.create_image(0, 351, image = sol_image, anchor = NW)
+
+g1 = Gland(1, 100, 400)
+sq = Squirrel(1, 300, 50)
+
+fen.mainloop()
