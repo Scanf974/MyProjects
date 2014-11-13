@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from math import *
+from scipy import *
 
 class   First_cls(object):
     """Me premier class"""
@@ -14,22 +15,37 @@ class   First_cls(object):
         print self.argv2
 
 
-class   Gland(object):
-    """LE gland"""
+class   Objet_de_la_vie:
+    """Unobjet avec les propriete Newton"""
 
-    def     __init__(self, vitesse, angle, py, px):
-        self.vitesse = vitesse
-        self.angle = angle
+    def __init__(self, poids, py, px):
+        self.poids = poids
         self.py = py
         self.px = px
+        t[self.py, self.px] = 1
 
-    def     init_vitesse(vitesse, angle, py, px):
-        angle_rad = 0.0174*angle
-        vy = sin(angle_rad)
-        vx = cos(angle_rad)
+class   Gland(Objet_de_la_vie):
+    """LE gland"""
+
+    def __init__(self, poids, py, px):
+        Objet_de_la_vie.__init__(self, poids, py, px)
+
+    def ligne(self, direction):
+        if (direction == 6):
+            t[self.py, self.px + 1] = 1
 
 
-g1 = Gland(80, 25, 10, 10)
-yo = First_cls("Hey mecdfgsdfg", "Gros PD")
-yo.fnc()
+def     tab(y0, x0):
+    for y in range (y0):
+        for x in range (x0):
+            print t[y, x],
+        print
 
+t = zeros([200, 40], int)
+tab(10, 20)
+print
+
+g1 = Gland(1, 5, 1)
+tab(10, 20)
+g1.ligne(6)
+tab(10, 20)
