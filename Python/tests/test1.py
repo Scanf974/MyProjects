@@ -121,6 +121,9 @@ def     pointeur(event):
                 vitesse = 90
             sq[i].shoot(vitesse, angle)
         i = i + 1
+
+
+
 #----------------PROGRAMME PRINCIPALE---------------
 
 #creation canvas
@@ -142,9 +145,12 @@ sol_image = ImageTk.PhotoImage(file = 'images/bg2.png')
 fond = can.create_image(0, 0, image = fond_image, anchor = NW)
 sol = can.create_image(0, 351, image = sol_image, anchor = NW)
 
-g1 = Gland(1, 0.1, 100, 400)
-sq = [Squirrel(1, 0.3, 340, 50),
-        Squirrel(1, 0.3, 340, 550),
+#POID, COEFF rebon, Py, Px
+gl = [Gland(1, 0.1, 100, 1100),
+        Gland(1, 0.1, 200, 1050),
+        0]
+sq = [Squirrel(2, 0.3, 340, 50),
+        Squirrel(0.79, 0.2, 340, 550),
         Squirrel(1, 0.3, 340, 150),
         0]
 
