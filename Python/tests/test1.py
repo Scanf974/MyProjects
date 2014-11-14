@@ -37,6 +37,7 @@ class   Objet_de_la_vie:
         self.py = py0
         self.px = px0
         self.coeff = coeff
+        self.moov = 0
         self.timer = MyTimer(0.001, self.deplace)
 
     def shoot(self, vitesse, angle):
@@ -97,9 +98,29 @@ class   Squirrel(Objet_de_la_vie):
 
 def     pointeur(event):
     x,y = event.x,event.y
-    print "sdf"
-    if (sq.moov == 0):
-        sq.shoot(80, 74)
+
+    print "click"
+    i = 0
+    vitesse = 0
+    angle = 0
+    while (sq[i]):
+        if (sq[i].moov == 0):
+            oppose = sq[i].py0 + 30 - y
+            if (x < sq[i].px0 + 30):
+                adjacent = (sq[i].px0 + 30 - x)
+                tanj = oppose / adjacent
+                angle = 180 - math.degrees(math.atan(tanj))
+                h = -adjacent / cos(angle*0.0174)
+            elif (x > sq[i].px0 + 30):
+                adjacent = x - sq[i].px0 + 30
+                tanj = oppose / adjacent
+                angle = math.degrees(math.atan(tanj))
+                h = adjacent / cos(angle*0.0174)
+            vitesse = h * 0.2
+            if (vitesse >= 90):
+                vitesse = 90
+            sq[i].shoot(vitesse, angle)
+        i = i + 1
 #----------------PROGRAMME PRINCIPALE---------------
 
 #creation canvas
@@ -122,12 +143,10 @@ fond = can.create_image(0, 0, image = fond_image, anchor = NW)
 sol = can.create_image(0, 351, image = sol_image, anchor = NW)
 
 g1 = Gland(1, 0.1, 100, 400)
-sq = Squirrel(1, 0.3, 340, 50)
-sq2 = Squirrel(1, 0.9, 340, 550)
-sq3 = Squirrel(1, 0.3, 340, 150)
+sq = [Squirrel(1, 0.3, 340, 50),
+        Squirrel(1, 0.3, 340, 550),
+        Squirrel(1, 0.3, 340, 150),
+        0]
 
-sq.shoot(80.0, 74)
-sq2.shoot(14.0, 32)
-sq3.shoot(80.0, 11)
 #kill de la fenetre
 fen.mainloop()
