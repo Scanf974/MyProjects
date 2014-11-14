@@ -48,21 +48,33 @@ class   Objet_de_la_vie:
         self.timer.start()
 
     def deplace(self):
-
+        self.moov = 1
         if (self.vitesse > 2):
             if (self.py > 340):
+                self.timer.stop()
                 self.px0 = self.px
                 self.py0 = 340
                 self.vitesse *= self.coeff
-                self.timer.stop()
                 self.shoot(self.vitesse, self.angle)
 
-            if (self.px > -20 and self.px < 1000):
+            if (self.px < -20):
+                self.vx = -self.vx
+                self.px = -20
+                self.angle = self.angle - 2*(self.angle - 90)
+                self.px0 = -20 - self.px0
+            elif (self.px > 1000):
+                self.vx = -self.vx
+                self.px = 1000
+                self.angle = self.angle - 2*(self.angle - 90)
+                self.px0 = 2*1000 - self.px0
+
+            if (self.px >= -20 and self.px <= 1000):
                 self.px = self.vx*self.tps + self.px0
                 self.py = ((self.poids*9.81)/2)*self.tps*self.tps - self.vy*self.tps + self.py0
                 can.coords(self.image, self.px, self.py)
                 self.tps += 0.018
         else:
+            self.moov = 0
             self.timer.stop()
 
 
@@ -73,6 +85,8 @@ class   Gland(Objet_de_la_vie):
     def __init__(self, poids, coeff, py, px):
         Objet_de_la_vie.__init__(self, poids, coeff, py, px)
         self.image = can.create_image(self.px, self.py, image = gland_image, anchor = NW)
+
+
 class   Squirrel(Objet_de_la_vie):
     """LE squirrel"""
 
@@ -81,6 +95,11 @@ class   Squirrel(Objet_de_la_vie):
         self.image = can.create_image(self.px, self.py, image = squirrel_image, anchor = NW)
 
 
+def     pointeur(event):
+    x,y = event.x,event.y
+    print "sdf"
+    if (sq.moov == 0):
+        sq.shoot(80, 74)
 #----------------PROGRAMME PRINCIPALE---------------
 
 #creation canvas
@@ -89,6 +108,7 @@ fen.title("BallSquirrel")
 frame = Frame(fen)
 frame.pack()
 can = Canvas(fen, width = 1200, height = 500, bg = 'white')
+can.bind("<Button-1>", pointeur)
 can.pack(side = TOP, padx = 0, pady = 0)
 
 #url des images
@@ -102,9 +122,12 @@ fond = can.create_image(0, 0, image = fond_image, anchor = NW)
 sol = can.create_image(0, 351, image = sol_image, anchor = NW)
 
 g1 = Gland(1, 0.1, 100, 400)
-sq = Squirrel(1, 0.3, 300, 50)
+sq = Squirrel(1, 0.3, 340, 50)
+sq2 = Squirrel(1, 0.9, 340, 550)
+sq3 = Squirrel(1, 0.3, 340, 150)
 
 sq.shoot(80.0, 74)
-
+sq2.shoot(14.0, 32)
+sq3.shoot(80.0, 11)
 #kill de la fenetre
 fen.mainloop()
