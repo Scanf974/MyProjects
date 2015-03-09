@@ -1,0 +1,3 @@
+# MyProjects
+
+Pour le moment c'est le basard. A l'avenir il pourra y avoir mes projets perso, peu être accecible en open source...
