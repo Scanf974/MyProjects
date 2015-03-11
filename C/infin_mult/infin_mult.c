@@ -1,6 +1,5 @@
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -79,7 +78,7 @@ void	ft_mult(char *n1, char *n2)
 		i++;
 	while (i < ld_save)
 	{
-		dprintf(1, "%d", dest[i]);
+		ft_putchar(dest[i] + '0');
 		i++;
 	}
 }
@@ -115,7 +114,6 @@ int		main(int ac, char **av)
 	if (ac == 3)
 	{
 		ft_prev(av[1], av[2]);
-
 	}
 	write(1, "\n", 1);
 	return (0);
