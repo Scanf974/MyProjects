@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from Tkinter import *
 from math import *
 from scipy import *
@@ -137,7 +136,7 @@ can.pack(side = TOP, padx = 0, pady = 0)
 
 #url des images
 gland_image = ImageTk.PhotoImage(file = 'images/gland.png')
-squirrel_image = ImageTk.PhotoImage(file = 'images/ab.png')
+squirrel_image = ImageTk.PhotoImage(file = 'images/logo_chrome.png')
 fond_image = ImageTk.PhotoImage(file = 'images/decors.png')
 sol_image = ImageTk.PhotoImage(file = 'images/bg2.png')
 
